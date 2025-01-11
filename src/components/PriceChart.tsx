@@ -12,6 +12,8 @@ import { AboutSection } from './AboutSection'
 import { TokenomicsSection } from './TokenomicsSection'
 import { TeamSection } from './TeamSection'
 import { TrendingCarousel } from './TrendingCarousel'
+import { Breadcrumb } from './Breadcrumb'
+import Image from 'next/image'
 
 interface PriceChartProps {
   symbol: string;
@@ -25,30 +27,62 @@ export function PriceChart({ symbol, prices, trendingCoins }: PriceChartProps) {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-2">
-        <Bitcoin className="h-8 w-8 text-orange-500" />
-        <div>
-          <h1 className="text-2xl font-bold">{symbol.toUpperCase()}</h1>
-          <p className="text-3xl font-bold">${prices.usd.toLocaleString()}</p>
-        </div>
-        <span className={`ml-2 rounded-sm bg-${changeColor.replace('text-', '')}-100 px-2 py-1 text-sm ${changeColor}`}>
-          {changeSymbol}{prices.usd_24h_change.toFixed(2)}%
-        </span>
-      </div>
-      
-      <Card className="p-4">
-        <Tabs defaultValue="1D">
-          <TabsList className="mb-4">
-            {["1H", "1D", "7D", "1M", "3M", "6M", "1Y", "ALL"].map((period) => (
-              <TabsTrigger key={period} value={period}>
-                {period}
-              </TabsTrigger>
-            ))}
-          </TabsList>
-          <div className="h-[400px] w-full">
-            <TradingViewChart symbol={symbol} />
+      <div>
+        <Breadcrumb coinName={symbol.toUpperCase()} />
+        <div className="flex items-center gap-4 mb-8">
+          <div className="flex items-center gap-3">
+            <Image
+              src={`https://i.postimg.cc/W4c6Q4Qx/image.png`}
+              alt={symbol}
+              width={32}
+              height={32}
+              className="rounded-full"
+            />
+            <h1 className="text-2xl font-bold">{symbol.toUpperCase()}</h1>
+            <span className="text-xs md:text-sm bg-gray-500 text-white px-2 py-1 rounded">
+              BTC
+            </span>
           </div>
-        </Tabs>
+          <span className="px-2 py-1 bg-gray-600 text-white text-xs md:text-sm rounded">
+            Rank #{1}
+          </span>
+        </div>
+
+        <div className="mb-6">
+          <div className="flex items-baseline gap-4">
+            <p className="text-3xl font-bold">${prices.usd.toLocaleString()}</p>
+            <span className={`${changeColor} text-sm font-medium`}>
+              {changeSymbol}{prices.usd_24h_change.toFixed(2)}%
+            </span>
+          </div>
+          <p className="text-gray-500">
+            ₹ {prices.inr.toLocaleString()}
+          </p>
+        </div>
+      </div>
+
+      <Card className="p-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 items-center justify-between mb-4">
+            <div className="flex items-center gap-2"><h2 className="text-sm md:text-lg font-semibold">Bitcoin Price Chart (USD)</h2></div>
+          
+          <div className="flex gap-0 md:gap-2">
+            {["1H", "24H", "7D", "1M", "3M", "6M", "1Y", "ALL"].map((period) => (
+              <button
+                key={period}
+                className={`px-2 md:px-3 py-1 text-xs md:text-sm rounded-full ${
+                  period === "7D"
+                    ? "bg-blue-600 text-white"
+                    : "text-gray-600 hover:bg-gray-100"
+                }`}
+              >
+                {period}
+              </button>
+            ))}
+          </div>
+        </div>
+        <div className="h-[400px] w-full">
+          <TradingViewChart symbol="BTCUSD" />
+        </div>
       </Card>
 
       <CoinTabs />
@@ -57,8 +91,7 @@ export function PriceChart({ symbol, prices, trendingCoins }: PriceChartProps) {
       <AboutSection />
       <TokenomicsSection />
       <TeamSection />
-      <TrendingCarousel title="You May Also Like" coins={trendingCoins} />
-      <TrendingCarousel title="Trending Coins" coins={trendingCoins} />
+      
     </div>
   )
 } 

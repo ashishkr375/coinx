@@ -17,7 +17,7 @@ export default function TradingViewChart({ symbol }: TradingViewChartProps) {
       if (typeof TradingView !== 'undefined') {
         new TradingView.widget({
           autosize: true,
-          symbol: `${symbol}USD`,
+          symbol: `${symbol}`,
           interval: 'D',
           timezone: 'Etc/UTC',
           theme: 'light',
