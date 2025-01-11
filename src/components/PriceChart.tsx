@@ -8,13 +8,18 @@ import TradingViewChart from './TradingViewChart'
 import { PerformanceSection } from './PerformanceSection'
 import { CoinTabs } from './CoinTabs'
 import { SentimentSection } from './SentimentSection'
+import { AboutSection } from './AboutSection'
+import { TokenomicsSection } from './TokenomicsSection'
+import { TeamSection } from './TeamSection'
+import { TrendingCarousel } from './TrendingCarousel'
 
 interface PriceChartProps {
   symbol: string;
   prices: CoinPrice;
+  trendingCoins: any[];
 }
 
-export function PriceChart({ symbol, prices }: PriceChartProps) {
+export function PriceChart({ symbol, prices, trendingCoins }: PriceChartProps) {
   const changeColor = prices.usd_24h_change >= 0 ? 'text-green-600' : 'text-red-600';
   const changeSymbol = prices.usd_24h_change >= 0 ? '+' : '';
 
@@ -49,6 +54,11 @@ export function PriceChart({ symbol, prices }: PriceChartProps) {
       <CoinTabs />
       <PerformanceSection prices={prices} />
       <SentimentSection />
+      <AboutSection />
+      <TokenomicsSection />
+      <TeamSection />
+      <TrendingCarousel title="You May Also Like" coins={trendingCoins} />
+      <TrendingCarousel title="Trending Coins" coins={trendingCoins} />
     </div>
   )
 } 

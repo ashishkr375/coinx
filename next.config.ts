@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   images: {
-    domains: [ 'i.postimg.cc', 'coin-images.coingecko.com', 'hebbkx1anhila5yf.public.blob.vercel-storage.com'],
+    domains: [ 'i.postimg.cc', 'coin-images.coingecko.com', 'hebbkx1anhila5yf.public.blob.vercel-storage.com','i.pravatar.cc'],
     remotePatterns: [
       
       {
@@ -19,6 +19,11 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'i.postimg.cc',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.pravatar.cc',
         pathname: '/**',
       },
     ],

@@ -9,7 +9,7 @@ export function Header() {
         <div className="flex items-center gap-6">
           <Link href="/" className="flex items-center gap-2">
             <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-8USavh7Tzqq1Puof5Uz0waTsy0UCcJ.png"
+              src="https://i.postimg.cc/B6KRSRXz/image.png"
               alt="KoinX Logo"
               width={86}
               height={24}
