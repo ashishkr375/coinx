@@ -6,7 +6,7 @@ import Layout from "@/components/Layout";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Crypto Dashboard",
+  title: "KoinX Crypto Dashboard",
   description: "Track cryptocurrency prices and trends",
 };
 
